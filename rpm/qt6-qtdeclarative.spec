@@ -1,3 +1,4 @@
+%global  qt_version 6.7.2
 %define _lto_cflags %{nil}
 
 Summary: Qt6 - QtDeclarative component
@@ -7,8 +8,6 @@ Release: 0%{?dist}
 
 License: LGPL-3.0-only OR GPL-3.0-only WITH Qt-GPL-exception-1.0
 Url:     http://www.qt.io
-%global  majmin %(echo %{version} | cut -d. -f1-2)
-%global  qt_version %(echo %{version} | cut -d~ -f1)
 
 Source0: %{name}-%{version}.tar.bz2
 
@@ -19,10 +18,10 @@ BuildRequires: cmake
 BuildRequires: clang
 BuildRequires: ninja
 BuildRequires: qt6-rpm-macros
-BuildRequires: qt6-qtbase-devel >= %{version}
+BuildRequires: qt6-qtbase-devel >= %{qt_version}
 BuildRequires: qt6-qtbase-private-devel
-BuildRequires: qt6-qtlanguageserver-devel >= %{version}
-BuildRequires: qt6-qtshadertools-devel >= %{version}
+BuildRequires: qt6-qtlanguageserver-devel >= %{qt_version}
+BuildRequires: qt6-qtshadertools-devel >= %{qt_version}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires: python3-base
 BuildRequires: pkgconfig(xkbcommon) >= 0.4.1
