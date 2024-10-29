@@ -22,7 +22,7 @@ BuildRequires: qt6-qtbase-devel >= %{qt_version}
 BuildRequires: qt6-qtbase-private-devel
 BuildRequires: qt6-qtlanguageserver-devel >= %{qt_version}
 BuildRequires: qt6-qtshadertools-devel >= %{qt_version}
-%{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
+%{?_qt6:Requires: %{_qt6}%{?_isa} => %{qt_version}}
 BuildRequires: python3-base
 BuildRequires: pkgconfig(xkbcommon) >= 0.4.1
 
