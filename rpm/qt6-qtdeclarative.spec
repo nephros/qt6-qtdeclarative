@@ -95,6 +95,17 @@ popd
 
 mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/qt6/
 
+pushd %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader
+for prl_file in libqml*.prl ; do
+  sed -i -e "/^QMAKE_PRL_BUILD_DIR/d" ${prl_file}
+  rm -fv "$(basename ${prl_file} .prl).la"
+  sed -i -e "/^QMAKE_PRL_LIBS/d" ${prl_file}
+done
+popd
+
+mv %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo/* %{buildroot}%{_qt6_libdir}/qt6/objects-RelWithDebInfo/
+rm -fr %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo
+
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -104,10 +115,12 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/libQt6LabsAnimation.so.6*
 %{_qt6_libdir}/libQt6LabsFolderListModel.so.6*
 %{_qt6_libdir}/libQt6LabsQmlModels.so.6*
+%{_qt6_libdir}/libQt6LabsPlatform.so.6*
 %{_qt6_libdir}/libQt6LabsSettings.so.6*
 %{_qt6_libdir}/libQt6LabsSharedImage.so.6*
 %{_qt6_libdir}/libQt6LabsWavefrontMesh.so.6*
 %{_qt6_libdir}/libQt6QmlLocalStorage.so.6*
+%{_qt6_libdir}/libQt6QmlMeta.so.6*
 %{_qt6_libdir}/libQt6QmlNetwork.so.6*
 %{_qt6_libdir}/libQt6Qml.so.6*
 %{_qt6_libdir}/libQt6QmlCompiler.so.*
@@ -130,11 +143,16 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/libQt6QmlXmlListModel.so.6*
 %{_qt6_plugindir}/qmltooling/
 %{_qt6_plugindir}/qmllint/
+%{_qt6_plugindir}/qmlls/
+%{_qt6_archdatadir}/qml/Assets
 %{_qt6_archdatadir}/qml/Qt*
 %{_qt6_archdatadir}/qml/QmlTime
 %{_qt6_archdatadir}/qml/*.qmltypes
+%{_qt6_archdatadir}/qml/QML/*.qmltypes
+%{_qt6_archdatadir}/qml/QML/qmldir
 
 %files devel
+%{_qt6_libdir}/qt6/sbom/*.spdx
 %dir %{_qt6_libdir}/cmake/Qt6PacketProtocolPrivate
 %dir %{_qt6_libdir}/cmake/Qt6Qml
 %dir %{_qt6_libdir}/cmake/Qt6Qml/QmlPlugins
@@ -186,6 +204,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %dir %{_qt6_libdir}/cmake/Qt6QmlXmlListModel
 %{_bindir}/qml*
 %{_qt6_bindir}/qml*
+%{_qt6_libexecdir}/qmlaotstats
 %{_qt6_libexecdir}/qmlcachegen
 %{_qt6_libexecdir}/qmlimportscanner
 %{_qt6_libexecdir}/qmltyperegistrar
@@ -194,11 +213,13 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/libQt6LabsAnimation.so
 %{_qt6_libdir}/libQt6LabsFolderListModel.so
 %{_qt6_libdir}/libQt6LabsQmlModels.so
+%{_qt6_libdir}/libQt6LabsPlatform.so
 %{_qt6_libdir}/libQt6LabsSettings.so
 %{_qt6_libdir}/libQt6LabsSharedImage.so
 %{_qt6_libdir}/libQt6LabsWavefrontMesh.so
 %{_qt6_libdir}/libQt6QmlLocalStorage.so
 %{_qt6_libdir}/libQt6Qml.so
+%{_qt6_libdir}/libQt6QmlMeta.so
 %{_qt6_libdir}/libQt6QmlNetwork.so
 %{_qt6_libdir}/libQt6QmlCompiler.so
 %{_qt6_libdir}/libQt6QmlCore.so
@@ -208,22 +229,28 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/libQt6QmlXmlListModel.so
 %{_qt6_libdir}/qt6/metatypes/qt6*_metatypes.json
 %{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlTypeRegistrarPrivate_resources_1/.qt/rcc/qrc_jsRootMetaTypes_init.cpp.o
+%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloader_resources_1/.qt/rcc/qrc_qmake_Assets_Downloader_init.cpp.o
+%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloaderplugin_init/QmlAssetDownloaderplugin_init.cpp.o
 %{_qt6_archdatadir}/mkspecs/modules/*.pri
 %{_qt6_archdatadir}/mkspecs/features/*.prf
 %{_qt6_libdir}/cmake/Qt6BuildInternals/StandaloneTests/QtDeclarativeTestsConfig.cmake
 %{_qt6_libdir}/cmake/Qt6PacketProtocolPrivate/*.cmake
 %{_qt6_libdir}/cmake/Qt6Qml/*.cmake*
+%{_qt6_libdir}/cmake/Qt6Qml/*.conf.in
 %{_qt6_libdir}/cmake/Qt6Qml/*.cpp.in
 %{_qt6_libdir}/cmake/Qt6Qml/*.qrc.in
 #%%{_qt6_libdir}/cmake/Qt6QmlBuiltins/*cmake
 %{_qt6_libdir}/cmake/Qt6Qml/QmlPlugins/*.cmake
+%{_qt6_libdir}/cmake/Qt6QmlAssetDownloader/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlCompiler/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlCore/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlDebugPrivate/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlIntegration/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlImportScanner/*.cmake
+%{_qt6_libdir}/cmake/Qt6QmlMeta/*.cmake
 %{_qt6_libdir}/cmake/Qt6LabsAnimation/*.cmake
 %{_qt6_libdir}/cmake/Qt6LabsFolderListModel/*.cmake
+%{_qt6_libdir}/cmake/Qt6LabsPlatform/*.cmake
 %{_qt6_libdir}/cmake/Qt6LabsQmlModels/*.cmake
 %{_qt6_libdir}/cmake/Qt6LabsSettings/*.cmake
 %{_qt6_libdir}/cmake/Qt6LabsSharedImage/*.cmake
@@ -233,6 +260,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/cmake/Qt6QmlLocalStorage/*.cmake
 %{_qt6_libdir}/cmake/Qt6QuickControls2Basic/*.cmake
 %{_qt6_libdir}/cmake/Qt6QuickControls2BasicStyleImpl/*.cmake
+%{_qt6_libdir}/cmake/Qt6QuickControls2FluentWinUI3StyleImpl/*.cmake
 %{_qt6_libdir}/cmake/Qt6QuickControls2Fusion/*.cmake
 %{_qt6_libdir}/cmake/Qt6QuickControls2FusionStyleImpl/*.cmake
 %{_qt6_libdir}/cmake/Qt6QuickControls2Imagine/*.cmake
@@ -270,6 +298,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 #%%{_qt6_libdir}/libQt6QmlBuiltins.a
 
 %files static
+%{_qt6_libdir}/libQt6QmlAssetDownloader.a
 %{_qt6_libdir}/libQt6QmlDom.a
 %{_qt6_libdir}/libQt6QmlLS.a
 %{_qt6_libdir}/libQt6QmlTypeRegistrar.a
