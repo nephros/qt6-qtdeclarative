@@ -138,7 +138,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %dir %{_qt6_libdir}/cmake/Qt6PacketProtocolPrivate
 %dir %{_qt6_libdir}/cmake/Qt6Qml
 %dir %{_qt6_libdir}/cmake/Qt6Qml/QmlPlugins
-%dir %{_qt6_libdir}/cmake/Qt6QmlBuiltins
+#%%dir %%{_qt6_libdir}/cmake/Qt6QmlBuiltins
 %dir %{_qt6_libdir}/cmake/Qt6QmlCompiler
 %dir %{_qt6_libdir}/cmake/Qt6QmlCore
 %dir %{_qt6_libdir}/cmake/Qt6QmlDebugPrivate
@@ -215,7 +215,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/cmake/Qt6Qml/*.cmake*
 %{_qt6_libdir}/cmake/Qt6Qml/*.cpp.in
 %{_qt6_libdir}/cmake/Qt6Qml/*.qrc.in
-%{_qt6_libdir}/cmake/Qt6QmlBuiltins/*cmake
+#%%{_qt6_libdir}/cmake/Qt6QmlBuiltins/*cmake
 %{_qt6_libdir}/cmake/Qt6Qml/QmlPlugins/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlCompiler/*.cmake
 %{_qt6_libdir}/cmake/Qt6QmlCore/*.cmake
@@ -267,7 +267,7 @@ mv %{buildroot}%{_qt6_libdir}/objects-RelWithDebInfo %{buildroot}%{_qt6_libdir}/
 %{_qt6_libdir}/pkgconfig/*.pc
 %{_qt6_libdir}/libQt6*.prl
 # FIXME: should be in -static, but looks it's required for all modules
-%{_qt6_libdir}/libQt6QmlBuiltins.a
+#%%{_qt6_libdir}/libQt6QmlBuiltins.a
 
 %files static
 %{_qt6_libdir}/libQt6QmlDom.a
