@@ -103,8 +103,8 @@ for prl_file in libqml*.prl ; do
 done
 popd
 
-mv %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo/* %{buildroot}%{_qt6_libdir}/qt6/objects-RelWithDebInfo/
-rm -fr %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo
+#mv %%{buildroot}%%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo/* %%{buildroot}%%{_qt6_libdir}/qt6/objects-RelWithDebInfo/
+#rm -fr %%{buildroot}%%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo
 
 
 %post -p /sbin/ldconfig
@@ -229,8 +229,10 @@ rm -fr %{buildroot}%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebI
 %{_qt6_libdir}/libQt6QmlXmlListModel.so
 %{_qt6_libdir}/qt6/metatypes/qt6*_metatypes.json
 %{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlTypeRegistrarPrivate_resources_1/.qt/rcc/qrc_jsRootMetaTypes_init.cpp.o
-%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloader_resources_1/.qt/rcc/qrc_qmake_Assets_Downloader_init.cpp.o
-%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloaderplugin_init/QmlAssetDownloaderplugin_init.cpp.o
+#%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloader_resources_1/.qt/rcc/qrc_qmake_Assets_Downloader_init.cpp.o
+#%{_qt6_libdir}/qt6/objects-RelWithDebInfo/QmlAssetDownloaderplugin_init/QmlAssetDownloaderplugin_init.cpp.o
+%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo/QmlAssetDownloader_resources_1/.qt/rcc/qrc_qmake_Assets_Downloader_init.cpp.o
+%{_qt6_archdatadir}/qml/Assets/Downloader/objects-RelWithDebInfo/QmlAssetDownloaderplugin_init/QmlAssetDownloaderplugin_init.cpp.o
 %{_qt6_archdatadir}/mkspecs/modules/*.pri
 %{_qt6_archdatadir}/mkspecs/features/*.prf
 %{_qt6_libdir}/cmake/Qt6BuildInternals/StandaloneTests/QtDeclarativeTestsConfig.cmake
