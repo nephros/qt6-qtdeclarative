@@ -56,6 +56,11 @@ Requires: %{name}-devel%{?_isa} = %{version}-%{release}
 ln -s %{__python3} python
 export PATH=`pwd`:$PATH
 
+# hack to work around obs bug:
+mkdir bin
+cp %{_qt6_libdir}/qt6/bin/* bin/
+export PATH=`pwd`/bin:$PATH
+
 %cmake_qt6 \
   -DQT_BUILD_EXAMPLES:BOOL=OFF \
   -DQT_INSTALL_EXAMPLES_SOURCES=OFF
