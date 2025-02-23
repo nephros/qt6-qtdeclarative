@@ -157,7 +157,7 @@ popd
 %{_qt6_archdatadir}/qml/QML/qmldir
 
 %files devel
-%{_qt6_libdir}/qt6/sbom/*.spdx
+#%%{_qt6_libdir}/qt6/sbom/*.spdx
 %dir %{_qt6_libdir}/cmake/Qt6PacketProtocolPrivate
 %dir %{_qt6_libdir}/cmake/Qt6Qml
 %dir %{_qt6_libdir}/cmake/Qt6Qml/QmlPlugins
