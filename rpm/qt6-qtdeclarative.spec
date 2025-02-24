@@ -58,7 +58,10 @@ export PATH=`pwd`:$PATH
 
 # maybe this helps with build failures?
 %ifarch aarch64
-export SBOX_DISABLE_MAPPING=1
+#export SBOX_DISABLE_MAPPING=1
+echo "Sbox mapping mode was: $SBOX_MAPPING_MODE"
+export SBOX_MAPPING_MODE="nomap"
+echo "Sbox mapping mode is now: $SBOX_MAPPING_MODE"
 %endif
 
 %cmake_qt6 \
