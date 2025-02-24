@@ -56,6 +56,11 @@ Requires: %{name}-devel%{?_isa} = %{version}-%{release}
 ln -s %{__python3} python
 export PATH=`pwd`:$PATH
 
+# maybe this helps with build failures?
+%ifarch aarch64
+export SBOX_DISABLE_MAPPING=1
+%endif
+
 %cmake_qt6 \
   -DQT_BUILD_EXAMPLES:BOOL=OFF \
   -DQT_INSTALL_EXAMPLES_SOURCES=OFF
