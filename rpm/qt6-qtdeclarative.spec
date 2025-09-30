@@ -69,15 +69,19 @@ Requires: %{name}-devel%{?_isa} = %{version}-%{release}
 ln -s %{__python3} python
 export PATH=`pwd`:$PATH
 
-%cmake_qt6 \
+%cmake_qt6 -S . -B /tmp \
   -DQT_BUILD_EXAMPLES:BOOL=OFF \
   -DQT_INSTALL_EXAMPLES_SOURCES=OFF
 
+pushd /tmp
 %cmake_build
+popd
 
 
 %install
+pushd /tmp
 %cmake_install
+popd
 
 # hardlink files to %{_bindir}, add -qt6 postfix to not conflict
 mkdir %{buildroot}%{_bindir}
