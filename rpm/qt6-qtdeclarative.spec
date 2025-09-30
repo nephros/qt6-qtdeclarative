@@ -74,9 +74,9 @@ export PATH=`pwd`:$PATH
 #export SBOX_DISABLE_MAPPING=1
 echo "Sbox mapping mode was: $SBOX_MAPPING_MODE"
 #export SBOX_MAPPING_MODE="nomap"
-export SBOX_MAPPING_MODE="simple"
+#export SBOX_MAPPING_MODE="simple"
 #export SBOX_MAPPING_MODE="accel"
-#export SBOX_MAPPING_MODE="obs-rpm-build"
+export SBOX_MAPPING_MODE="obs-rpm-build"
 echo "Sbox mapping mode is now: $SBOX_MAPPING_MODE"
 %endif
 
