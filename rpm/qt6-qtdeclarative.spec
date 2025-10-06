@@ -72,7 +72,9 @@ export PATH=`pwd`:$PATH
 
 %cmake_qt6 -S . -B /tmp \
   -DQT_BUILD_EXAMPLES:BOOL=OFF \
-  -DQT_INSTALL_EXAMPLES_SOURCES=OFF
+  -DQT_INSTALL_EXAMPLES_SOURCES=OFF \
+  -DQT_QML_SKIP_CACHEGEN=TRUE \
+  %{nil}
 
 pushd /tmp
 %cmake_build
