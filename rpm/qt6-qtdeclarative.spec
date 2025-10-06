@@ -23,6 +23,7 @@ Source0: %{name}-%{version}.tar.bz2
 #Patch0:  use-cp-as-copy-command.patch
 # Sooo we chmod before copying instead:
 Patch0:  chmod-before-copy-command.patch
+Patch1:  force-permissions-after-open.patch
 
 # filter qml provides
 %global __provides_exclude_from ^%{_qt6_archdatadir}/qml/.*\\.so$

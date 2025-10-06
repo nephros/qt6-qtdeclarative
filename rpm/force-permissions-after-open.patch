@@ -1,0 +1,14 @@
+diff --git a/src/qmlcompiler/qqmljscompiler.cpp b/src/qmlcompiler/qqmljscompiler.cpp
+index 26502f204..eebe2b3b2 100644
+--- a/src/qmlcompiler/qqmljscompiler.cpp
++++ b/src/qmlcompiler/qqmljscompiler.cpp
+@@ -484,6 +484,9 @@ bool qSaveQmlJSUnitAsCpp(const QString &inputFileName, const QString &outputFile
+         return false;
+     }
+ 
++    // WA for OBS building bug: force permissions after write:
++    f.setPermissions(QFileDevice::ReadOwner | QFileDevice::WriteOwner);
++
+     auto writeStr = [&f, errorString](const QByteArray &data) {
+         if (f.write(data) != data.size()) {
+             *errorString = f.errorString();
