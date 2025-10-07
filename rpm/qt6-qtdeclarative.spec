@@ -312,11 +312,12 @@ popd
 %{_qt6_libdir}/qt6/modules/*.json
 %{_qt6_libdir}/pkgconfig/*.pc
 %{_qt6_libdir}/libQt6*.prl
+
 # FIXME: should be in -static, but looks it's required for all modules
 #%%{_qt6_libdir}/libQt6QmlBuiltins.a
+%{_qt6_libdir}/libQt6QmlAssetDownloader.a
 
 %files static
-%{_qt6_libdir}/libQt6QmlAssetDownloader.a
 %{_qt6_libdir}/libQt6QmlDom.a
 %{_qt6_libdir}/libQt6QmlLS.a
 %{_qt6_libdir}/libQt6QmlTypeRegistrar.a
