@@ -17,14 +17,7 @@ Source0: %{name}-%{version}.tar.bz2
 # [  178s] cd /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/src/qml && /usr/bin/cmake -E copy_if_different /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/QML/jsroot.qmltypes /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/jsroot.qmltypes
 # [  178s] Error copying file (if different) from "/home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/QML/jsroot.qmltypes" to "/home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/jsroot.qmltypes"
 # ... try using a plain cp instead:
-# Whith this applied, we see instad:
-# [  139s] FAILED: lib64/qt6/qml/jsroot.qmltypes /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1+qt6.lts.devel.20250930193430.1.gb599d27/upstream/lib64/qt6/qml/jsroot.qmltypes 
-# [  139s] cd /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1+qt6.lts.devel.20250930193430.1.gb599d27/upstream/src/qml && cp -f /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1+qt6.lts.devel.20250930193430.1.gb599d27/upstream/lib64/qt6/qml/QML/jsroot.qmltypes /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1+qt6.lts.devel.20250930193430.1.gb599d27/upstream/lib64/qt6/qml/jsroot.qmltypes
-# [  139s] cp: cannot open '/home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1+qt6.lts.devel.20250930193430.1.gb599d27/upstream/lib64/qt6/qml/QML/jsroot.qmltypes' for reading: Permission denied
-# .. which is this bug: https://forum.sailfishos.org/t/sdk-sometimes-creates-files-with-000-permissions/15140
-#Patch0:  use-cp-as-copy-command.patch
-# Sooo we chmod before copying instead:
-Patch0:  chmod-before-copy-command.patch
+Patch0:  use-cp-as-copy-command.patch
 
 # filter qml provides
 %global __provides_exclude_from ^%{_qt6_archdatadir}/qml/.*\\.so$
