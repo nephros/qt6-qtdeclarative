@@ -1,17 +1,8 @@
 diff --git a/src/qml/CMakeLists.txt b/src/qml/CMakeLists.txt
-index 2763f218..bb3f9543 100644
+index 2763f2187..6b7b38301 100644
 --- a/src/qml/CMakeLists.txt
 +++ b/src/qml/CMakeLists.txt
-@@ -472,6 +472,8 @@ add_custom_command(
-         "${qml_root_dir}/builtins.qmltypes"
-     DEPENDS
-         "${qml_build_dir}/plugins.qmltypes"
-+    COMMAND
-+        chmod -f 777 "${qml_build_dir}/plugins.qmltypes"
-     COMMAND
-         ${CMAKE_COMMAND} -E copy_if_different
-         "${qml_build_dir}/plugins.qmltypes"
-@@ -485,6 +487,8 @@ add_custom_command(
+@@ -485,6 +485,8 @@ add_custom_command(
          "${qml_root_dir}/jsroot.qmltypes"
      DEPENDS
          "${qml_build_dir}/jsroot.qmltypes"
