@@ -1,6 +1,8 @@
 %global  qt_version 6.7.2
 %define _lto_cflags %{nil}
 
+%bcond_with vulkan
+
 Summary: Qt6 - QtDeclarative component
 Name:    qt6-qtdeclarative
 Version: 6.8.3
@@ -40,6 +42,9 @@ BuildRequires: qt6-qtshadertools-devel >= %{qt_version}
 %{?_qt6:Requires: %{_qt6}%{?_isa} = %{_qt6_version}}
 BuildRequires: python3-base
 BuildRequires: pkgconfig(xkbcommon) >= 0.4.1
+%if %{with vulkan}
+BuildRequires: vulkan-headers
+%endif
 
 %description
 %{summary}.
