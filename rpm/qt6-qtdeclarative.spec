@@ -12,6 +12,12 @@ License: LGPL-3.0-only OR GPL-3.0-only WITH Qt-GPL-exception-1.0
 Url:     http://www.qt.io
 
 Source0: %{name}-%{version}.tar.bz2
+# OBS Build fails for aarch64 with:
+# [  178s] FAILED: lib64/qt6/qml/jsroot.qmltypes /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/jsroot.qmltypes 
+# [  178s] cd /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/src/qml && /usr/bin/cmake -E copy_if_different /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/QML/jsroot.qmltypes /home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/jsroot.qmltypes
+# [  178s] Error copying file (if different) from "/home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/QML/jsroot.qmltypes" to "/home/abuild/rpmbuild/BUILD/qt6-qtdeclarative-6.8.3+nep1/upstream/lib64/qt6/qml/jsroot.qmltypes"
+# ... try using a plain cp instead:
+Patch0:  use-cp-as-copy-command.patch
 
 # filter qml provides
 %global __provides_exclude_from ^%{_qt6_archdatadir}/qml/.*\\.so$
