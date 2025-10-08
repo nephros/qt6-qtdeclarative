@@ -12,6 +12,7 @@ License: LGPL-3.0-only OR GPL-3.0-only WITH Qt-GPL-exception-1.0
 Url:     http://www.qt.io
 
 Source0: %{name}-%{version}.tar.bz2
+Patch0:  chmod-before-and-after-copy-command.patch
 
 # filter qml provides
 %global __provides_exclude_from ^%{_qt6_archdatadir}/qml/.*\\.so$
