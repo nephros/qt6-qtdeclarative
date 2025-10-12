@@ -11,6 +11,8 @@ Url:     http://www.qt.io
 
 Source0: %{name}-%{version}.tar.bz2
 
+Patch0:  0001-fix-nocursor-build.patch
+
 # filter qml provides
 %global __provides_exclude_from ^%{_qt6_qmldir}/.*\\.so$
 
