@@ -40,7 +40,16 @@ BuildRequires: vulkan-headers
 Summary: QML scene viewer
 Requires:  %{name}%{?_isa} = %{version}-%{release}
 Provides: qt6-qmlscene
+# qmlscene is deprecated:
+Suggests: %{name}-qml
 %description qmlscene
+%{summary}.
+
+%package qml
+Summary: Qt6 QML scene viewer
+Requires:  %{name}%{?_isa} = %{version}-%{release}
+Provides: qt6-qml
+%description qml
 %{summary}.
 
 %package devel
@@ -490,6 +499,8 @@ popd
 %{_qt6_metatypesdir}/qt6quickshapesprivate_relwithdebinfo_metatypes.json
 %{_qt6_metatypesdir}/qt6quickvectorimagegeneratorprivate_relwithdebinfo_metatypes.json
 %{_qt6_mkspecsdir}/modules/qt_lib_*_private.pri
+%exclude %{_bindir}/qml-qt6
+%exclude %{_qt6_bindir}/qml
 %exclude %{_bindir}/qmlscene-qt6
 %exclude %{_qt6_bindir}/qmlscene
 
@@ -566,3 +577,7 @@ popd
 %files qmlscene
 %{_bindir}/qmlscene-qt6
 %{_qt6_bindir}/qmlscene
+
+%files qml
+%{_bindir}/qml-qt6
+%{_qt6_bindir}/qml
