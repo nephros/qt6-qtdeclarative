@@ -36,6 +36,13 @@ BuildRequires: vulkan-headers
 %description
 %{summary}.
 
+%package qmlscene
+Summary: QML scene viewer
+Requires:  %{name}%{?_isa} = %{version}-%{release}
+Provides: qt6-qmlscene
+%description qmlscene
+%{summary}.
+
 %package devel
 Summary: Development files for %{name}
 Provides:  %{name}-private-devel = %{version}-%{release}
@@ -73,7 +80,7 @@ export PATH=`pwd`:$PATH
 %install
 %cmake_install
 
-# hardlink files to %{_bindir}, add -qt6 postfix to not conflict
+# hardlink files to %%{_bindir}, add -qt6 postfix to not conflict
 mkdir %{buildroot}%{_bindir}
 pushd %{buildroot}%{_qt6_bindir}
 for i in * ; do
@@ -483,6 +490,8 @@ popd
 %{_qt6_metatypesdir}/qt6quickshapesprivate_relwithdebinfo_metatypes.json
 %{_qt6_metatypesdir}/qt6quickvectorimagegeneratorprivate_relwithdebinfo_metatypes.json
 %{_qt6_mkspecsdir}/modules/qt_lib_*_private.pri
+%exclude %{_bindir}/qmlscene-qt6
+%exclude %{_qt6_bindir}/qmlscene
 
 %files static
 %dir %{_qt6_archdatadir}/objects-*
@@ -554,4 +563,6 @@ popd
 #{_qt6_mkspecsdir}/modules/qt_lib_quicktestutilsprivate_private.pri
 %{_qt6_archdatadir}/objects-*/QmlTypeRegistrarPrivate_resources_1/
 
-
+%files qmlscene
+%{_bindir}/qmlscene-qt6
+%{_qt6_bindir}/qmlscene
