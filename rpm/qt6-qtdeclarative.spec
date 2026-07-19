@@ -1,4 +1,4 @@
-%global  qt_version 6.8.3
+%global qt_version 6.8.4
 %define _lto_cflags %{nil}
 
 Summary: Qt6 - QtDeclarative component
