@@ -68,7 +68,7 @@ export PATH=`pwd`:$PATH
 %install
 %cmake_install
 
-# hardlink files to %{_bindir}, add -qt6 postfix to not conflict
+# hardlink files to %%{_bindir}, add -qt6 postfix to not conflict
 mkdir %{buildroot}%{_bindir}
 pushd %{buildroot}%{_qt6_bindir}
 for i in * ; do
